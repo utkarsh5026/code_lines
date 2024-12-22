@@ -11,8 +11,6 @@ def get_files_to_process(root_dir: str,
     files = set()
     root = Path(root_dir).resolve()
 
-    print(root, extensions, ignore_patterns)
-
     for ext in extensions:
         for file_path in root.rglob(f"*.{ext}"):
             should_ignore = any(
