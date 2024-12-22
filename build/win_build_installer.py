@@ -1,6 +1,5 @@
 import os
 import sys
-import winreg
 import subprocess
 import shutil
 
@@ -22,6 +21,10 @@ def install_dependencies():
     ])
     subprocess.check_call([
         venv_python, '-m', 'pip', 'install', 'pyinstaller'
+    ])
+    subprocess.check_call([
+        venv_python, '-m', 'pip', 'install', '-r',
+        os.path.join(os.path.dirname(__file__), '..', 'requirements.txt')
     ])
 
     return venv_python

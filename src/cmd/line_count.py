@@ -36,6 +36,8 @@ class LineCountCommand(BaseCommand):
         self.file_wise = file_wise
         self.directory_wise = directory_wise
 
+        self.console.print(self.root_dir)
+
     def __count_total_lines(self, files: list[Path]):
         """
         Count the total lines in the files.
