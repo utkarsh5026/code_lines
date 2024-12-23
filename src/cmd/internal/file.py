@@ -11,6 +11,9 @@ def get_files_to_process(root_dir: str,
     files = set()
     root = Path(root_dir).resolve()
 
+    if not root.exists():
+        raise FileNotFoundError(f"The directory {root_dir} does not exist")
+
     for ext in extensions:
         for file_path in root.rglob(f"*.{ext}"):
             should_ignore = any(
