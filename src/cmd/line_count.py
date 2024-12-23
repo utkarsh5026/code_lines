@@ -4,7 +4,6 @@ from collections import defaultdict
 
 from rich.console import Console
 from rich.progress import track
-from rich.panel import Panel
 from rich.table import Table
 from rich import box
 
@@ -69,7 +68,7 @@ class LineCountCommand(BaseCommand):
 
         dirs_list = sorted(dir_files.items())
 
-        for i, (directory, dir_files_list) in enumerate(dirs_list):
+        for i, (directory, dir_files_list) in enumerate(track(dirs_list, description="Counting lines...", console=self.console, total=len(dirs_list))):
             first_file = True
             for file in sorted(dir_files_list, key=lambda x: len(x.name)):
                 lines = count_lines_in_file(file)
