@@ -6,7 +6,25 @@ def get_files_to_process(root_dir: str,
                          extensions: list[str],
                          ignore_patterns: list[str]) -> list[Path]:
     """
-    Get the list of files to process.
+    Get the list of files to process based on extensions and ignore patterns.
+
+    Args:
+        root_dir (str): The root directory to search for files
+        extensions (list[str]): List of file extensions to include (without dot)
+        ignore_patterns (list[str]): List of glob patterns to ignore
+
+    Returns:
+        list[Path]: List of Path objects for matching files
+
+    Raises:
+        FileNotFoundError: If the root directory does not exist
+
+    Example:
+        >>> files = get_files_to_process(
+        ...     "src",
+        ...     extensions=["py", "js"],
+        ...     ignore_patterns=["**/test/**", "**/__pycache__/**"]
+        ... )
     """
     files = set()
     root = Path(root_dir).resolve()
