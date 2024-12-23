@@ -53,7 +53,7 @@ class LineCountCommand(BaseCommand):
         """
         Count the lines in the files directory-wise.
         """
-        dir_files = defaultdict(list)
+        dir_files: defaultdict[Path, list[Path]] = defaultdict(list)
         for file in files:
             dir_files[file.parent].append(file)
 
@@ -71,7 +71,7 @@ class LineCountCommand(BaseCommand):
 
         for i, (directory, dir_files_list) in enumerate(dirs_list):
             first_file = True
-            for file in sorted(dir_files_list):
+            for file in sorted(dir_files_list, key=lambda x: len(x.name)):
                 lines = count_lines_in_file(file)
                 try:
                     rel_path = directory.relative_to(self.root_dir)
